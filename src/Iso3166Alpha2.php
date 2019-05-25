@@ -27,7 +27,7 @@ class Iso3166Alpha2 implements Rule
      */
     public function passes($attribute, $value)
     {
-        $this->validator->isValidAlpha2CountryCode((string)$value);
+        return $this->validator->isValidAlpha2CountryCode((string)$value);
     }
 
     /**

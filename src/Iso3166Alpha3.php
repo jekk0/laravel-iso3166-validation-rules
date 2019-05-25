@@ -6,6 +6,6 @@ class Iso3166Alpha3 extends Iso3166Alpha2
 {
     public function passes($attribute, $value)
     {
-        $this->validator->isValidAlpha3CountryCode((string)$value);
+        return $this->validator->isValidAlpha3CountryCode((string)$value);
     }
 }

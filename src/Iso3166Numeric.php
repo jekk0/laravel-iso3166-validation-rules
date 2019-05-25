@@ -6,6 +6,6 @@ class Iso3166Numeric extends Iso3166Alpha2
 {
     public function passes($attribute, $value)
     {
-        $this->validator->isValidNumericCountryCode((int)$value);
+        return $this->validator->isValidNumericCountryCode((int)$value);
     }
 }
