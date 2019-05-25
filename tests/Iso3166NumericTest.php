@@ -14,13 +14,22 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
         $this->rule = new Iso3166Numeric();
     }
 
-    public function testPassesSuccess()
+    /**
+     * @param $countryCode
+     *
+     * @dataProvider passesSuccessDataProvider
+     */
+    public function testPassesSuccess($countryCode)
+    {
+        $this->assertTrue($this->rule->passes('attr', $countryCode));
+    }
+
+    public function passesSuccessDataProvider()
     {
         $availableCountryCodes = (new CountryCodes())->getNumericCodes();
+        $data = array_combine($availableCountryCodes, $availableCountryCodes);
 
-        foreach ($availableCountryCodes as $countryCode) {
-            $this->assertTrue($this->rule->passes('attr', $countryCode));
-        }
+        return [$data];
     }
 
     /**
@@ -35,9 +44,7 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
 
     public function passesInvalidCountryCodesDataProvider()
     {
-        return [
-            1, 2, 3, 1000, 1001,
-        ];
+        return [[1], [2], [3], [1000], [1001],];
     }
 
     public function testMessage()

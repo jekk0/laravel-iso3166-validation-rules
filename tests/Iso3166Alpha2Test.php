@@ -14,13 +14,24 @@ class Iso3166Alpha2Test extends \PHPUnit\Framework\TestCase
         $this->rule = new Iso3166Alpha2();
     }
 
-    public function testPassesSuccess()
+    /**
+     * @param $countryCode
+     *
+     * @dataProvider passesSuccessDataProvider
+     */
+    public function testPassesSuccess($countryCode)
+    {
+        $this->assertTrue($this->rule->passes('attr', $countryCode));
+    }
+
+    public function passesSuccessDataProvider()
     {
         $availableCountryCodes = (new CountryCodes())->getAlpha2Codes();
+        $data = array_combine($availableCountryCodes, $availableCountryCodes);
 
-        foreach ($availableCountryCodes as $countryCode) {
-            $this->assertTrue($this->rule->passes('attr', $countryCode));
-        }
+        return [
+            $data
+        ];
     }
 
     public function testPassesInvalidStringLength()
@@ -40,9 +51,7 @@ class Iso3166Alpha2Test extends \PHPUnit\Framework\TestCase
 
     public function passesInvalidCountryCodesDataProvider()
     {
-        return [
-            'xx', 'XX', 'zz', 'ZZ',
-        ];
+        return [['xx'], ['XX'], ['zz'], ['ZZ'],];
     }
 
     public function testMessage()
