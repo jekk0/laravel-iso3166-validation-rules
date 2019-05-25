@@ -27,9 +27,14 @@ class Iso3166Alpha3Test extends \PHPUnit\Framework\TestCase
     public function passesSuccessDataProvider()
     {
         $availableCountryCodes = (new CountryCodes())->getAlpha3Codes();
-        $data = array_combine($availableCountryCodes, $availableCountryCodes);
+        $data = [];
+        foreach ($availableCountryCodes as $countryCode) {
+            $data[$countryCode] = [$countryCode];
+        }
 
-        return [$data];
+        return [
+            $data
+        ];
     }
 
     public function testPassesInvalidStringLength()

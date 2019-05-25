@@ -27,9 +27,14 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
     public function passesSuccessDataProvider()
     {
         $availableCountryCodes = (new CountryCodes())->getNumericCodes();
-        $data = array_combine($availableCountryCodes, $availableCountryCodes);
+        $data = [];
+        foreach ($availableCountryCodes as $countryCode) {
+            $data[$countryCode] = [$countryCode];
+        }
 
-        return [$data];
+        return [
+            $data
+        ];
     }
 
     /**
