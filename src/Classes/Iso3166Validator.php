@@ -28,11 +28,11 @@ class Iso3166Validator
             return false;
         }
 
-        return in_array(strtoupper($alpha3CountryCode), $this->countryCodes->getAlpha2Codes());
+        return in_array(strtoupper($alpha3CountryCode), $this->countryCodes->getAlpha3Codes());
     }
 
     public function isValidNumericCountryCode(int $numericCountryCode) : bool
     {
-        return in_array($numericCountryCode, $this->countryCodes->getAlpha2Codes());
+        return in_array($numericCountryCode, $this->countryCodes->getNumericCodes());
     }
 }

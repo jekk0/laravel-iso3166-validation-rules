@@ -29,7 +29,7 @@ class Iso3166Alpha2Test extends \PHPUnit\Framework\TestCase
         $availableCountryCodes = (new CountryCodes())->getAlpha2Codes();
         $data = [];
         foreach ($availableCountryCodes as $countryCode) {
-            $data[$countryCode] = [$countryCode];
+            $data[$countryCode] = $countryCode;
         }
 
         return [

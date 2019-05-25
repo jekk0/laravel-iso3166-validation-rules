@@ -29,7 +29,7 @@ class Iso3166Alpha3Test extends \PHPUnit\Framework\TestCase
         $availableCountryCodes = (new CountryCodes())->getAlpha3Codes();
         $data = [];
         foreach ($availableCountryCodes as $countryCode) {
-            $data[$countryCode] = [$countryCode];
+            $data[$countryCode] = $countryCode;
         }
 
         return [

@@ -29,7 +29,7 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
         $availableCountryCodes = (new CountryCodes())->getNumericCodes();
         $data = [];
         foreach ($availableCountryCodes as $countryCode) {
-            $data[$countryCode] = [$countryCode];
+            $data[$countryCode] = $countryCode;
         }
 
         return [
