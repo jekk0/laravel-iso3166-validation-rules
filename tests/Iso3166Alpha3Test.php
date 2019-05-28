@@ -60,7 +60,7 @@ class Iso3166Alpha3Test extends \PHPUnit\Framework\TestCase
     public function testMessage()
     {
         $newErrorMessage = 'Ooops, form error. Parameter :attribute, Value: :input';
-        $this->rule->setMessage($newErrorMessage);
+        $this->rule->setErrorMessage($newErrorMessage);
         $this->assertEquals($this->rule->message(), $newErrorMessage);
     }
 }
