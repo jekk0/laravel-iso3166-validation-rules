@@ -8,7 +8,7 @@ abstract class Iso3166BaseRule implements Rule
 {
     protected $validator;
 
-    protected $message = "The :attribute is invalid country code.";
+    protected $message = "The :input is not valid country code.";
 
     public function __construct()
     {
