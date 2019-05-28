@@ -57,6 +57,12 @@ class Iso3166Alpha3Test extends \PHPUnit\Framework\TestCase
         return [['xxx'], ['XXX'], ['zzz'], ['ZZZ'],];
     }
 
+    public function testSetErrorMessage()
+    {
+        $result = $this->rule->setErrorMessage('error');
+        $this->assertInstanceOf(Iso3166Alpha3::class, $result);
+    }
+
     public function testMessage()
     {
         $newErrorMessage = 'Ooops, form error. Parameter :attribute, Value: :input';

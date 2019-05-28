@@ -18,6 +18,8 @@ abstract class Iso3166BaseRule implements Rule
     public function setErrorMessage(string $message)
     {
         $this->message = $message;
+
+        return $this;
     }
 
     /**

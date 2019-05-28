@@ -52,6 +52,12 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
         return [[1], [2], [3], [1000], [1001],];
     }
 
+    public function testSetErrorMessage()
+    {
+        $result = $this->rule->setErrorMessage('error');
+        $this->assertInstanceOf(Iso3166Numeric::class, $result);
+    }
+
     public function testMessage()
     {
         $newErrorMessage = 'Ooops, form error. Parameter :attribute, Value: :input';
