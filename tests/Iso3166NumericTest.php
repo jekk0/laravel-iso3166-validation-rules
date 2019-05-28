@@ -54,6 +54,8 @@ class Iso3166NumericTest extends \PHPUnit\Framework\TestCase
 
     public function testMessage()
     {
-        $this->assertTrue(is_string($this->rule->message()));
+        $newErrorMessage = 'Ooops, form error. Parameter :attribute, Value: :input';
+        $this->rule->setMessage($newErrorMessage);
+        $this->assertEquals($this->rule->message(), $newErrorMessage);
     }
 }

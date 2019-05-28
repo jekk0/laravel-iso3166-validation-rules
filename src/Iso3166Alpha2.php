@@ -2,19 +2,10 @@
 
 namespace Jekk0\laravel\Iso3166\Validation\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
-use Jekk0\laravel\Iso3166\Validation\Rules\Classes\CountryCodes;
-use Jekk0\laravel\Iso3166\Validation\Rules\Classes\Iso3166Validator;
+use Jekk0\laravel\Iso3166\Validation\Rules\Classes\Iso3166BaseRule;
 
-class Iso3166Alpha2 implements Rule
+class Iso3166Alpha2 extends Iso3166BaseRule
 {
-    protected $validator;
-
-    public function __construct()
-    {
-        $this->validator = new Iso3166Validator(new CountryCodes());
-    }
-
     /**
      * Determine if the validation rule passes.
      *
@@ -28,15 +19,5 @@ class Iso3166Alpha2 implements Rule
     public function passes($attribute, $value)
     {
         return $this->validator->isValidAlpha2CountryCode((string)$value);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return "The :attribute is invalid country code.";
     }
 }
