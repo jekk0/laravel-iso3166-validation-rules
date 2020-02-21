@@ -1,4 +1,11 @@
-    
-### 1.0.0 (29.05.2019)
+#### 1.1.0
 
-    * Initial release
+* Added support for laravel 6.x 
+
+_[Updated on February 22, 2020]_
+
+#### 1.0.0
+
+* Initial release 
+
+_[Updated on May 29, 2019]_

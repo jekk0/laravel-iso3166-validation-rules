@@ -7,7 +7,8 @@
 ### Requirements
 
  * PHP >= 7.2
- * Laravel/Lumen 5.8.x 
+ * Laravel/Lumen 5.8.x (version 1.0.0)
+ * Laravel/Lumen 6.0.x (version 1.1.0)
 
 ### Installation
 
