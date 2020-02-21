@@ -2,7 +2,7 @@
 
 * Added support for laravel 6.x 
 
-_[Updated on February 23, 2010]_
+_[Updated on February 22, 2020]_
 
 #### 1.0.0
 
