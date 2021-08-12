@@ -1,5 +1,5 @@
 # Laravel/ Lumen validation rules for Country Codes - ISO 3166-1
-[![Build Status](https://travis-ci.org/jekk0/laravel-iso3166-validation-rules.svg?branch=master)](https://travis-ci.org/jekk0/laravel-iso3166-validation-rules)
+[![Build Status](https://travis-ci.com/jekk0/laravel-iso3166-validation-rules.svg?branch=master)](https://travis-ci.com/github/jekk0/laravel-iso3166-validation-rules)
 [![Coverage Status](https://codecov.io/gh/jekk0/laravel-iso3166-validation-rules/branch/master/graphs/badge.svg)](https://codecov.io/gh/jekk0/laravel-iso3166-validation-rules)
 [![Latest Stable Version](https://poser.pugx.org/jekk0/laravel-iso3166-validation-rules/v/stable)](https://packagist.org/packages/jekk0/laravel-iso3166-validation-rules)
 [![Total Downloads](https://poser.pugx.org/jekk0/laravel-iso3166-validation-rules/downloads)](https://packagist.org/packages/jekk0/laravel-iso3166-validation-rules)
