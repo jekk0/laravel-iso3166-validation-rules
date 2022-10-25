@@ -1,4 +1,4 @@
-# Laravel/ Lumen validation rules for Country Codes - ISO 3166-1
+# Laravel/Lumen validation rules for Country Codes - ISO 3166-1
 [![Build Status](https://travis-ci.com/jekk0/laravel-iso3166-validation-rules.svg?branch=master)](https://travis-ci.com/github/jekk0/laravel-iso3166-validation-rules)
 [![Coverage Status](https://codecov.io/gh/jekk0/laravel-iso3166-validation-rules/branch/master/graphs/badge.svg)](https://codecov.io/gh/jekk0/laravel-iso3166-validation-rules)
 [![Latest Stable Version](https://poser.pugx.org/jekk0/laravel-iso3166-validation-rules/v/stable)](https://packagist.org/packages/jekk0/laravel-iso3166-validation-rules)
@@ -6,7 +6,6 @@
 
 ### Requirements
 
- * PHP >= 7.2
  * Laravel/Lumen 5.8.x (version 1.0.0)
  * Laravel/Lumen 6.0.x (version 1.1.0)
  * Laravel/Lumen 7.0.x (version 1.2.0)
