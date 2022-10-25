@@ -1,3 +1,9 @@
+#### 1.4.0
+
+* Added support for laravel 9.x
+
+_[Updated on October 25, 2022]_
+
 #### 1.3.0
 
 * Added support for laravel 8.x 

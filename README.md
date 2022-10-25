@@ -71,7 +71,7 @@ $rules = ['countryNumeric' => ['required', new Iso3166Numeric()]]; // ISO3166-1 
     // Output
     // New Custom Error Message country = ZZZ
 ```
-Laravel/Lument automatically parse error message and replace: 
+Laravel/Lumen automatically parse error message and replace: 
  * :attribute -> form parameter name 
  * :input     -> form parameter value 
 
