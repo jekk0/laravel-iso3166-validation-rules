@@ -6,16 +6,16 @@ use Illuminate\Contracts\Validation\Rule;
 
 abstract class Iso3166BaseRule implements Rule
 {
-    protected $validator;
+    protected Iso3166Validator $validator;
 
-    protected $message = "The :input is not valid country code.";
+    protected string $message = "The :input is not valid country code.";
 
     public function __construct()
     {
         $this->validator = new Iso3166Validator(new CountryCodes());
     }
 
-    public function setErrorMessage(string $message)
+    public function setErrorMessage(string $message): static
     {
         $this->message = $message;
 
@@ -27,10 +27,10 @@ abstract class Iso3166BaseRule implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return $this->message;
     }
 
-    abstract function passes($attribute, $value);
+    abstract public function passes($attribute, $value);
 }

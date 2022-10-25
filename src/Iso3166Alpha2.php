@@ -9,8 +9,8 @@ class Iso3166Alpha2 extends Iso3166BaseRule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      *
      * @return bool
      *

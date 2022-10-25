@@ -9,5 +9,4 @@ interface CountryCodes
     public function getAlpha3Codes(): array;
 
     public function getNumericCodes(): array;
-
 }

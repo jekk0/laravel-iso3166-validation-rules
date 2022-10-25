@@ -6,12 +6,9 @@ use Jekk0\laravel\Iso3166\Validation\Rules\Interfaces\CountryCodes as CountryCod
 
 class Iso3166Validator
 {
-    protected $countryCodes = null;
-
-    public function __construct(CountryCodesInterface $countryCodes)
-    {
-        $this->countryCodes = $countryCodes;
-    }
+    public function __construct(
+        private CountryCodesInterface $countryCodes)
+    {}
 
     public function isValidAlpha2CountryCode(string $alpha2CountryCode) : bool
     {
@@ -19,7 +16,7 @@ class Iso3166Validator
             return false;
         }
 
-        return in_array(strtoupper($alpha2CountryCode), $this->countryCodes->getAlpha2Codes());
+        return in_array(strtoupper($alpha2CountryCode), $this->countryCodes->getAlpha2Codes(), true);
     }
 
     public function isValidAlpha3CountryCode(string $alpha3CountryCode) : bool
@@ -28,11 +25,11 @@ class Iso3166Validator
             return false;
         }
 
-        return in_array(strtoupper($alpha3CountryCode), $this->countryCodes->getAlpha3Codes());
+        return in_array(strtoupper($alpha3CountryCode), $this->countryCodes->getAlpha3Codes(), true);
     }
 
     public function isValidNumericCountryCode(int $numericCountryCode) : bool
     {
-        return in_array($numericCountryCode, $this->countryCodes->getNumericCodes());
+        return in_array($numericCountryCode, $this->countryCodes->getNumericCodes(), true);
     }
 }
