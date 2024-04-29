@@ -24,11 +24,6 @@ abstract class Iso3166BaseRule implements Rule
         return $this;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
     public function message(): string
     {
         return $this->message;
