@@ -1,6 +1,8 @@
 <?php
 
-namespace Jekk0\laravel\Iso3166\Validation\Rules\Classes;
+declare(strict_types=1);
+
+namespace Jekk0\Laravel\Iso3166\Validation\Rules\Classes;
 
 use Illuminate\Contracts\Validation\Rule;
 

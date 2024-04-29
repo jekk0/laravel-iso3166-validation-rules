@@ -8,7 +8,7 @@ jobs:
 
    steps:
      - name: Checkout Code
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
 
      - name: Install composer and dependencies
        uses: php-actions/composer@v6
@@ -18,7 +18,7 @@ jobs:
        env:
          XDEBUG_MODE: coverage
        with:
-         version: 10
+         version: 11
          php_version: 8.2
          bootstrap: vendor/autoload.php
          configuration: phpunit.xml

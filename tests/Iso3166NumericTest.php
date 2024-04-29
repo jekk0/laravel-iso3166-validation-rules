@@ -1,52 +1,43 @@
 <?php
 
-namespace Jekk0\laravel\Iso3166\Validation\Rules\Tests;
+declare(strict_types=1);
 
-use Jekk0\laravel\Iso3166\Validation\Rules\Classes\CountryCodes;
-use Jekk0\laravel\Iso3166\Validation\Rules\Iso3166Numeric;
+namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests;
+
+use Jekk0\Laravel\Iso3166\Validation\Rules\Iso3166Numeric;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class Iso3166NumericTest extends TestCase
+final class Iso3166NumericTest extends TestCase
 {
-    protected Iso3166Numeric $rule;
+    private readonly Iso3166Numeric $rule;
 
     protected function setUp(): void
     {
         $this->rule = new Iso3166Numeric();
     }
 
-    /**
-     * @param $countryCode
-     *
-     * @dataProvider passesSuccessDataProvider
-     */
-    public function testPassesSuccess($countryCode): void
+    #[DataProvider('passesSuccessDataProvider')]
+    public function testPassesSuccess(int $countryCode): void
     {
-        $this->assertTrue($this->rule->passes('attr', $countryCode));
+        self::assertTrue($this->rule->passes('attr', $countryCode));
     }
 
-    public function passesSuccessDataProvider(): array
+    public static function passesSuccessDataProvider(): array
     {
-        $availableCountryCodes = (new CountryCodes())->getNumericCodes();
-        $data = [];
-        foreach ($availableCountryCodes as $countryCode) {
-            $data[$countryCode] = $countryCode;
-        }
+        $data = str_getcsv(file_get_contents(__DIR__ . '/resources/numeric-test.csv'));
+        $data = array_map(intval(...), $data);
 
         return [$data];
     }
 
-    /**
-     * @param $invalidCountryCode
-     *
-     * @dataProvider passesInvalidCountryCodesDataProvider
-     */
+    #[DataProvider('passesInvalidCountryCodesDataProvider')]
     public function testPassesInvalidCountryCodes($invalidCountryCode): void
     {
-        $this->assertFalse($this->rule->passes('attr', $invalidCountryCode));
+        self::assertFalse($this->rule->passes('attr', $invalidCountryCode));
     }
 
-    public function passesInvalidCountryCodesDataProvider(): array
+    public static function passesInvalidCountryCodesDataProvider(): array
     {
         return [[1], [2], [3], [1000], [1001],];
     }
@@ -54,13 +45,13 @@ class Iso3166NumericTest extends TestCase
     public function testSetErrorMessage(): void
     {
         $result = $this->rule->setErrorMessage('error');
-        $this->assertInstanceOf(Iso3166Numeric::class, $result);
+        self::assertInstanceOf(Iso3166Numeric::class, $result);
     }
 
     public function testMessage(): void
     {
         $newErrorMessage = 'Oops, form error. Parameter :attribute, Value: :input';
         $this->rule->setErrorMessage($newErrorMessage);
-        $this->assertEquals($this->rule->message(), $newErrorMessage);
+        self::assertEquals($this->rule->message(), $newErrorMessage);
     }
 }

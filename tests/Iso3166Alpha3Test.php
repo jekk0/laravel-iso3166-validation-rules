@@ -1,71 +1,61 @@
 <?php
 
-namespace Jekk0\laravel\Iso3166\Validation\Rules\Tests;
+declare(strict_types=1);
 
-use Jekk0\laravel\Iso3166\Validation\Rules\Classes\CountryCodes;
-use Jekk0\laravel\Iso3166\Validation\Rules\Iso3166Alpha3;
+namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests;
+
+use Jekk0\Laravel\Iso3166\Validation\Rules\Iso3166Alpha3;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class Iso3166Alpha3Test extends TestCase
+final class Iso3166Alpha3Test extends TestCase
 {
-    protected Iso3166Alpha3 $rule;
+    private readonly Iso3166Alpha3 $rule;
 
     protected function setUp(): void
     {
         $this->rule = new Iso3166Alpha3();
     }
 
-    /**
-     * @param $countryCode
-     *
-     * @dataProvider passesSuccessDataProvider
-     */
-    public function testPassesSuccess($countryCode): void
+    #[DataProvider('passesSuccessDataProvider')]
+    public function testPassesSuccess(string $countryCode): void
     {
-        $this->assertTrue($this->rule->passes('attr', $countryCode));
+        self::assertTrue($this->rule->passes('attr', $countryCode));
     }
 
-    public function passesSuccessDataProvider(): array
+    public static function passesSuccessDataProvider(): array
     {
-        $availableCountryCodes = (new CountryCodes())->getAlpha3Codes();
-        $data = [];
-        foreach ($availableCountryCodes as $countryCode) {
-            $data[$countryCode] = $countryCode;
-        }
+        $data = str_getcsv(file_get_contents(__DIR__ . '/resources/alpha3-test.csv'));
 
         return [$data];
     }
 
     public function testPassesInvalidStringLength(): void
     {
-        $this->assertFalse($this->rule->passes('attr', 'AAAA'));
+        self::assertFalse($this->rule->passes('attr', 'AAAA'));
     }
 
-    /**
-     * @param $invalidCountryCode
-     *
-     * @dataProvider passesInvalidCountryCodesDataProvider
-     */
-    public function testPassesInvalidCountryCodes($invalidCountryCode): void
+    #[DataProvider('passesInvalidCountryCodesDataProvider')]
+    public function testPassesInvalidCountryCodes(string $invalidCountryCode): void
     {
-        $this->assertFalse($this->rule->passes('attr', $invalidCountryCode));
+        self::assertFalse($this->rule->passes('attr', $invalidCountryCode));
     }
 
-    public function passesInvalidCountryCodesDataProvider(): array
+    public static function passesInvalidCountryCodesDataProvider(): array
     {
-        return [['xxx'], ['XXX'], ['zzz'], ['ZZZ'],];
+        return [['xxx'], ['XXX'], ['yyy'], ['YYY'],];
     }
 
     public function testSetErrorMessage(): void
     {
         $result = $this->rule->setErrorMessage('error');
-        $this->assertInstanceOf(Iso3166Alpha3::class, $result);
+        self::assertInstanceOf(Iso3166Alpha3::class, $result);
     }
 
     public function testMessage(): void
     {
         $newErrorMessage = 'Oops, form error. Parameter :attribute, Value: :input';
         $this->rule->setErrorMessage($newErrorMessage);
-        $this->assertEquals($this->rule->message(), $newErrorMessage);
+        self::assertEquals($this->rule->message(), $newErrorMessage);
     }
 }

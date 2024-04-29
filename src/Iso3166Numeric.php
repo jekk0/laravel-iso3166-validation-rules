@@ -1,8 +1,10 @@
 <?php
 
-namespace Jekk0\laravel\Iso3166\Validation\Rules;
+declare(strict_types=1);
 
-use Jekk0\laravel\Iso3166\Validation\Rules\Classes\Iso3166BaseRule;
+namespace Jekk0\Laravel\Iso3166\Validation\Rules;
+
+use Jekk0\Laravel\Iso3166\Validation\Rules\Classes\Iso3166BaseRule;
 
 class Iso3166Numeric extends Iso3166BaseRule
 {
