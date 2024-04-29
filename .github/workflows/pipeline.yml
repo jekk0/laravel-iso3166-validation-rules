@@ -26,7 +26,10 @@ jobs:
          test_suffix: Test.php
 
      - name: Upload to Codecov
-       uses: codecov/codecov-action@v2
+       uses: codecov/codecov-action@v4
        with:
+         fail_ci_if_error: true
          files: ./coverage.xml
          verbose: true
+       env:
+         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
