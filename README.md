@@ -25,6 +25,7 @@
 #### Using in controller
 ```php
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -34,11 +35,17 @@ class Test extends Controller
 {
     public function index(Request $request)
     {
+        // Request example: http://127.0.0.1:8000/t?country=us
+
         $rules = ['country' => ['required', new Iso3166Alpha2()]]; // ISO3166-1 Alpha2 validation rule
 
-        $this->validate($request, $rules);
-        
-        // etc ...
+        try {
+            $request->validate($rules);
+        } catch (\Exception $exception) {
+            dd('Country code is invalid: ' . $exception->getMessage());
+        }
+
+        dd('Country code is valid: ' . $request->get('country'));
     }
 }
 
@@ -61,16 +68,23 @@ $rules = ['countryNumeric' => ['required', new Iso3166Numeric()]]; // ISO3166-1 
 ...
     public function index(Request $request)
     {
+        // Request example: http://127.0.0.1:8000/t?country=INVALID_INPUT
+
         $iso3166Alpha2Rule = (new Iso3166Alpha2())->setErrorMessage('New Custom Error Message :attribute = :input');
+
         $rules = ['country' => ['required', $iso3166Alpha2Rule]]; // ISO3166-1 Alpha2 validation rule
 
-        $this->validate($request, $rules);
+        try {
+            $request->validate($rules);
+        } catch (\Exception $exception) {
+            dd('Country code is invalid: ' . $exception->getMessage());
+        }
 
-        // etc ...
+        dd('Country code is valid: ' . $request->get('country'));
     }
     
     // Output
-    // New Custom Error Message country = "Custom message"
+    // Country code is invalid: New Custom Error Message country = INVALID_INPUT
 ```
 Laravel/Lumen automatically parse error message and replace: 
  * :attribute -> form parameter name 
