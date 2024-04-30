@@ -1,6 +1,8 @@
 <?php
 
-namespace Jekk0\laravel\Iso3166\Validation\Rules\Classes;
+declare(strict_types=1);
+
+namespace Jekk0\Laravel\Iso3166\Validation\Rules\Classes;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -22,11 +24,6 @@ abstract class Iso3166BaseRule implements Rule
         return $this;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
     public function message(): string
     {
         return $this->message;
