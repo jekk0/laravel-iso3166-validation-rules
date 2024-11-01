@@ -1,47 +1,83 @@
-#### 1.6.0
+# Change Log
 
-* Added support for laravel 11.x
+## [1.6.1] - 2024-11-01
 
-_[Updated on April 30, 2024]_
+### Added
+- Static analysis tool for monitoring code base (Psalm)
+ 
+### Changed
+- Deprecated interface Illuminate\Contracts\Validation\Rule on Illuminate\Contracts\Validation\ValidationRule
 
-#### 1.5.0
+### Fixed
 
-* Added support for laravel 10.x
+## [1.6.0] - 2024-04-30
 
-_[Updated on February 16, 2023]_
+### Added
+- Support for laravel 11.x
 
-#### 1.4.0
+### Changed
 
-* Added support for laravel 9.x
+### Fixed
 
-_[Updated on October 25, 2022]_
+## [1.5.0] - 2023-02-16
 
-#### 1.3.0
+### Added
+- Support for laravel 10.x
 
-* Added support for laravel 8.x 
+### Changed
 
-_[Updated on August 12, 2021]_
+### Fixed
 
-#### 1.2.0
+## [1.4.0] - 2022-10-25
 
-* Added support for laravel 7.x 
+### Added
+- Support for laravel 9.x
 
-_[Updated on June 27, 2020]_
+### Changed
 
-#### 1.1.0
+### Fixed
 
-* Added support for laravel 6.x 
+## [1.3.0] - 2021-08-21
 
-_[Updated on February 22, 2020]_
+### Added
+- Support for laravel 8.x
 
-#### 1.0.1
+### Changed
 
-* Fixed defect, added new tests
+### Fixed
 
-_[Updated on May 29, 2019]_
+## [1.2.0] - 2020-06-27
 
-#### 1.0.0
+### Added
+- Support for laravel 7.x
 
-* Initial release 
+### Changed
 
-_[Updated on May 29, 2019]_
+### Fixed
+
+## [1.1.0] - 2020-02-22
+
+### Added
+- Support for laravel 6.x
+
+### Changed
+
+### Fixed
+
+## [1.0.1] - 2019-05-29
+
+### Added
+
+### Changed
+
+### Fixed
+- Issue 
+
+## [1.0.0] - 2019-05-29
+
+### Added
+- Composer package for Laravel/Lumen 5.x
+
+### Changed
+
+### Fixed
