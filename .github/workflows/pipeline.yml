@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install composer and dependencies
         uses: php-actions/composer@v6
@@ -17,7 +17,7 @@ jobs:
         uses: docker://ghcr.io/psalm/psalm-github-actions
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v4
         env:
           XDEBUG_MODE: coverage
         with:
