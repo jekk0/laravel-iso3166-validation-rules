@@ -71,7 +71,7 @@
 ### Changed
 
 ### Fixed
-- Issue 
+- Fixed defect, added new tests
 
 ## [1.0.0] - 2019-05-29
 

@@ -62,4 +62,14 @@ final class Iso3166Alpha3Test extends TestCase
         $rule->setErrorMessage($customErrorMessage);
         $rule->validate('attr', 'invalid', $closure(...));
     }
+
+    /** Regression test for bugfix, see tag 1.0.1 */
+    public function testSetErrorMessageReturnRuleInstance(): void
+    {
+        $customErrorMessage = 'Message';
+        $rule = new Iso3166Alpha3();
+        $ruleInstance = $rule->setErrorMessage($customErrorMessage);
+
+        self::assertInstanceOf(Iso3166Alpha3::class, $ruleInstance);
+    }
 }
