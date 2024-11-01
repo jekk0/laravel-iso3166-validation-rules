@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Jekk0\Laravel\Iso3166\Validation\Rules\Classes;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-abstract class Iso3166BaseRule implements Rule
+abstract class Iso3166BaseRule implements ValidationRule
 {
     protected Iso3166Validator $validator;
 
@@ -24,10 +24,8 @@ abstract class Iso3166BaseRule implements Rule
         return $this;
     }
 
-    public function message(): string
+    protected function getMessage(): string
     {
         return $this->message;
     }
-
-    abstract public function passes($attribute, $value);
 }

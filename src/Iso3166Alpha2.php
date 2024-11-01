@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Jekk0\Laravel\Iso3166\Validation\Rules;
 
+use Closure;
 use Jekk0\Laravel\Iso3166\Validation\Rules\Classes\Iso3166BaseRule;
 
 class Iso3166Alpha2 extends Iso3166BaseRule
 {
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return $this->validator->isValidAlpha2CountryCode((string)$value);
+        if ($this->validator->isValidAlpha2CountryCode((string)$value) === false) {
+            $fail($this->getMessage());
+        }
     }
 }

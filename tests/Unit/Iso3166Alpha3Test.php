@@ -7,55 +7,69 @@ namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests;
 use Jekk0\Laravel\Iso3166\Validation\Rules\Iso3166Alpha3;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Stub\CallableOnFail;
 
 final class Iso3166Alpha3Test extends TestCase
 {
-    private readonly Iso3166Alpha3 $rule;
-
-    protected function setUp(): void
+    #[DataProvider('validateSuccessDataProvider')]
+    public function testValidateSuccess(string $countryCode): void
     {
-        $this->rule = new Iso3166Alpha3();
+        $closure = $this->createMock(CallableOnFail::class);
+        $closure->expects($this->never())->method('__invoke');
+
+        $rule = new Iso3166Alpha3();
+        $rule->validate('attr', $countryCode, $closure(...));
     }
 
-    #[DataProvider('passesSuccessDataProvider')]
-    public function testPassesSuccess(string $countryCode): void
-    {
-        self::assertTrue($this->rule->passes('attr', $countryCode));
-    }
-
-    public static function passesSuccessDataProvider(): array
+    public static function validateSuccessDataProvider(): array
     {
         $data = str_getcsv(file_get_contents(__DIR__ . '/resources/alpha3-test.csv'));
 
         return [$data];
     }
 
-    public function testPassesInvalidStringLength(): void
+    public function testValidateInvalidStringLength(): void
     {
-        self::assertFalse($this->rule->passes('attr', 'AAAA'));
+        $closure = $this->createMock(CallableOnFail::class);
+        $closure->expects($this->once())->method('__invoke');
+
+        $rule = new Iso3166Alpha3();
+        $rule->validate('attr', 'AAAA', $closure(...));
     }
 
-    #[DataProvider('passesInvalidCountryCodesDataProvider')]
-    public function testPassesInvalidCountryCodes(string $invalidCountryCode): void
+    #[DataProvider('validateInvalidCountryCodesDataProvider')]
+    public function testValidateInvalidCountryCodes(string $invalidCountryCode): void
     {
-        self::assertFalse($this->rule->passes('attr', $invalidCountryCode));
+        $closure = $this->createMock(CallableOnFail::class);
+        $closure->expects($this->once())->method('__invoke');
+
+        $rule = new Iso3166Alpha3();
+        $rule->validate('attr', $invalidCountryCode, $closure(...));
     }
 
-    public static function passesInvalidCountryCodesDataProvider(): array
+    public static function validateInvalidCountryCodesDataProvider(): array
     {
         return [['xxx'], ['XXX'], ['yyy'], ['YYY'],];
     }
 
     public function testSetErrorMessage(): void
     {
-        $result = $this->rule->setErrorMessage('error');
-        self::assertInstanceOf(Iso3166Alpha3::class, $result);
+        $customErrorMessage = 'Iso3166Alpha3 Custom Error Message :attribute';
+        $closure = $this->createMock(CallableOnFail::class);
+        $closure->expects($this->once())->method('__invoke')->with($customErrorMessage);
+
+        $rule = new Iso3166Alpha3();
+        $rule->setErrorMessage($customErrorMessage);
+        $rule->validate('attr', 'invalid', $closure(...));
     }
 
-    public function testMessage(): void
+    /** Regression test for bugfix, see tag 1.0.1 */
+    public function testSetErrorMessageReturnRuleInstance(): void
     {
-        $newErrorMessage = 'Oops, form error. Parameter :attribute, Value: :input';
-        $this->rule->setErrorMessage($newErrorMessage);
-        self::assertEquals($this->rule->message(), $newErrorMessage);
+        $customErrorMessage = 'Message';
+        $rule = new Iso3166Alpha3();
+        $ruleInstance = $rule->setErrorMessage($customErrorMessage);
+
+        self::assertInstanceOf(Iso3166Alpha3::class, $ruleInstance);
     }
 }
