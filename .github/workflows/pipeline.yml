@@ -1,35 +1,38 @@
 name: Build Status
 
-on: [push]
+on: [ push, pull_request ]
 
 jobs:
- build-test:
-   runs-on: ubuntu-latest
+  build-test:
+    runs-on: ubuntu-latest
 
-   steps:
-     - name: Checkout Code
-       uses: actions/checkout@v3
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-     - name: Install composer and dependencies
-       uses: php-actions/composer@v6
+      - name: Install composer and dependencies
+        uses: php-actions/composer@v6
 
-     - name: PHPUnit Tests
-       uses: php-actions/phpunit@v3
-       env:
-         XDEBUG_MODE: coverage
-       with:
-         version: 11
-         php_version: 8.2
-         configuration: phpunit.xml
-         php_extensions: xdebug
-         args: tests --coverage-clover ./coverage.xml
-         test_suffix: Test.php
+      - name: Psalm
+        uses: docker://ghcr.io/psalm/psalm-github-actions
 
-     - name: Upload to Codecov
-       uses: codecov/codecov-action@v4
-       with:
-         fail_ci_if_error: true
-         files: ./coverage.xml
-         verbose: true
-       env:
-         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        env:
+          XDEBUG_MODE: coverage
+        with:
+          version: 11
+          php_version: 8.2
+          configuration: phpunit.xml
+          php_extensions: xdebug
+          args: tests --coverage-clover ./coverage.xml
+          test_suffix: Test.php
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          files: ./coverage.xml
+          verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
