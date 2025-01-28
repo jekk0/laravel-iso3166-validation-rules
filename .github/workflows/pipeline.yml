@@ -38,6 +38,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: PHPStan
+        uses: php-actions/phpstan@v3
         with:
           php_version: "8.2"
 
