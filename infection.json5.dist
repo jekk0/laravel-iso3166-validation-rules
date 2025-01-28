@@ -1,0 +1,19 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Classes/CountryCodes.php",
+        ]
+    },
+    "logs": {
+        "html": "./var/infection.html",
+    },
+    "tmpDir": "./var",
+    "minCoveredMsi": 99,
+    "mutators": {
+        "@default": true,
+    },
+}

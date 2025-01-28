@@ -11,7 +11,11 @@ class Iso3166Numeric extends Iso3166BaseRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if ($this->validator->isValidNumericCountryCode((int)$value) === false) {
+        {
+            if (is_int($value) && $this->validator->isValidNumericCountryCode($value) === true) {
+                return;
+            }
+
             $fail($this->getMessage());
         }
     }

@@ -1,0 +1,20 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    checkBenevolentUnionTypes: true
+    editorUrl: '=>'
+    editorUrlTitle: '%%file%%:%%line%%'
+    tmpDir: ./var/phpstan
+    ignoreErrors:
+        -
+            message: '#^Parameter \$fail of method Jekk0\\Laravel\\Iso3166\\Validation\\Rules\\.*\:\:validate\(\) has invalid type Illuminate\\Translation\\PotentiallyTranslatedString\.$#'
+            path: src
+        -
+            message: '#^Parameter \#3 \$fail of method Jekk0\\Laravel\\Iso3166\\Validation\\Rules\\.*\:\:validate\(\) expects Closure\(string, string\|null\=\)\: Illuminate\\Translation\\PotentiallyTranslatedString, Closure\(\)\: mixed given\.$#'
+            path: tests
+        -
+            message: '#^Parameter \#1 \$string of function str_getcsv expects string, string\|false given\.$#'
+            path: tests
+

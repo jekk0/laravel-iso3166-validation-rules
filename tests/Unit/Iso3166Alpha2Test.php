@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests\Unit;
 
+use Jekk0\Laravel\Iso3166\Validation\Rules\Classes\Iso3166BaseRule;
 use Jekk0\Laravel\Iso3166\Validation\Rules\Iso3166Alpha2;
 use Jekk0\Laravel\Iso3166\Validation\Rules\Tests\Stub\CallableOnFail;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Iso3166Alpha2::class)]
+#[CoversClass(Iso3166BaseRule::class)]
 final class Iso3166Alpha2Test extends TestCase
 {
     #[DataProvider('validateSuccessDataProvider')]
@@ -21,11 +25,11 @@ final class Iso3166Alpha2Test extends TestCase
         $rule->validate('attr', $countryCode, $closure(...));
     }
 
-    public static function validateSuccessDataProvider(): array
+    public static function validateSuccessDataProvider(): \Generator
     {
         $data = str_getcsv(file_get_contents(__DIR__ . '/resources/alpha2-test.csv'));
 
-        return [$data];
+        yield from [$data];
     }
 
     public function testValidateInvalidStringLength(): void
@@ -47,9 +51,18 @@ final class Iso3166Alpha2Test extends TestCase
         $rule->validate('attr', $invalidCountryCode, $closure(...));
     }
 
-    public static function validateInvalidCountryCodesDataProvider(): array
+    public static function validateInvalidCountryCodesDataProvider(): \Generator
     {
-        return [['xx'], ['XX'], ['yy'], ['YY'],];
+        yield from [['xx'], ['XX'], ['yy'], ['YY'],];
+    }
+
+    public function testValidateInvalidValueType(): void
+    {
+        $closure = $this->createMock(CallableOnFail::class);
+        $closure->expects($this->once())->method('__invoke');
+
+        $rule = new Iso3166Alpha2();
+        $rule->validate('attr', 111, $closure(...));
     }
 
     public function testSetErrorMessage(): void

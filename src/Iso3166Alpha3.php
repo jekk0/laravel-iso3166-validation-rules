@@ -11,8 +11,12 @@ class Iso3166Alpha3 extends Iso3166BaseRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if ($this->validator->isValidAlpha3CountryCode((string)$value) === false) {
-            $fail($this->getMessage());
+        if (is_string($value)
+            && strlen($value) === 3
+            && $this->validator->isValidAlpha3CountryCode($value) === true) {
+            return;
         }
+
+        $fail($this->getMessage());
     }
 }
