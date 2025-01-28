@@ -13,7 +13,7 @@
 ## [1.6.0] - 2024-04-30
 
 ### Added
-- Support for laravel 11.x
+- Support for Laravel 11.x
 
 ### Changed
 
@@ -22,7 +22,7 @@
 ## [1.5.0] - 2023-02-16
 
 ### Added
-- Support for laravel 10.x
+- Support for Laravel 10.x
 
 ### Changed
 
@@ -31,7 +31,7 @@
 ## [1.4.0] - 2022-10-25
 
 ### Added
-- Support for laravel 9.x
+- Support for Laravel 9.x
 
 ### Changed
 
@@ -40,7 +40,7 @@
 ## [1.3.0] - 2021-08-21
 
 ### Added
-- Support for laravel 8.x
+- Support for Laravel 8.x
 
 ### Changed
 
@@ -49,7 +49,7 @@
 ## [1.2.0] - 2020-06-27
 
 ### Added
-- Support for laravel 7.x
+- Support for Laravel 7.x
 
 ### Changed
 
@@ -58,7 +58,7 @@
 ## [1.1.0] - 2020-02-22
 
 ### Added
-- Support for laravel 6.x
+- Support for Laravel 6.x
 
 ### Changed
 

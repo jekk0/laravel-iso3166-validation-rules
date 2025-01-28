@@ -25,11 +25,17 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",
-    "vimeo/psalm": "^5.26"
+    "vimeo/psalm": "^5.26",
+    "friendsofphp/php-cs-fixer": "^3.68"
   },
   "autoload": {
     "psr-4": {
       "Jekk0\\Laravel\\Iso3166\\Validation\\Rules\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Jekk0\\Laravel\\Iso3166\\Validation\\Rules\\Tests\\": "tests/"
     }
   }
 }

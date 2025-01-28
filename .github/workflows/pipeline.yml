@@ -12,17 +12,17 @@ jobs:
 
       - name: Install composer and dependencies
         uses: php-actions/composer@v6
-
-      - name: Psalm
-        uses: docker://ghcr.io/psalm/psalm-github-actions
+        with:
+          version: 2.8.1
+          php_version: "8.2"
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v4
         env:
           XDEBUG_MODE: coverage
         with:
-          version: 11
-          php_version: 8.2
+          version: 10
+          php_version: "8.2"
           configuration: phpunit.xml
           php_extensions: xdebug
           args: tests --coverage-clover ./coverage.xml
@@ -36,3 +36,6 @@ jobs:
           verbose: true
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Psalm
+        uses: docker://ghcr.io/psalm/psalm-github-actions:5.26.1

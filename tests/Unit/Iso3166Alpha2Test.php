@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests;
+namespace Jekk0\Laravel\Iso3166\Validation\Rules\Tests\Unit;
 
 use Jekk0\Laravel\Iso3166\Validation\Rules\Iso3166Alpha2;
+use Jekk0\Laravel\Iso3166\Validation\Rules\Tests\Stub\CallableOnFail;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Stub\CallableOnFail;
 
 final class Iso3166Alpha2Test extends TestCase
 {
