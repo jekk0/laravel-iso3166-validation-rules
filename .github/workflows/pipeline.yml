@@ -23,7 +23,6 @@ jobs:
         with:
           version: 10
           php_version: "8.2"
-          configuration: phpunit.xml
           php_extensions: xdebug
           args: tests --coverage-clover ./coverage.xml
           test_suffix: Test.php
