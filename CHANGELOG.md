@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.7.0] - 2025-02-26
+
+### Added
+- Support for Laravel 12.x
+
 ## [1.6.1] - 2024-11-01
 
 ### Added
